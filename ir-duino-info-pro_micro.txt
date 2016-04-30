@@ -1,0 +1,44 @@
+IRremoteInfo - by AnalysIR (http://www.AnalysIR.com/)
+             - A helper sketch to assist in troubleshooting issues with the library by reviewing the settings within the IRremote library
+             - Prints out the important settings within the library, which can be configured to suit the many supported platforms
+             - When seeking on-line support, please post or upload the output of this sketch, where appropriate
+
+IRremote Library Settings
+=========================
+RAWBUF: 101
+Timer defined for use: Timer4_HS
+IR Tx Pin: 13
+MCU Clock: 16000000
+MCU Platform: Arduino Leonardo / Yun / Teensy 1.0 / ATmega32U4
+Mark Excess: 100 uSecs
+Microseconds per tick: 50 uSecs
+Measurement tolerance: 25%
+Minimum Gap between IR Signals: 5000 uSecs
+Arduino IDE version: 1.6.8
+Debug Mode: OFF (Normal)
+
+IR PROTOCOLS  SEND     DECODE
+============= ======== ========
+RC5:          Enabled  Enabled
+RC6:          Enabled  Enabled
+NEC:          Enabled  Enabled
+SONY:         Enabled  Enabled
+PANASONIC:    Enabled  Enabled
+JVC:          Enabled  Enabled
+SAMSUNG:      Enabled  Enabled
+WHYNTER:      Enabled  Enabled
+AIWA_RC_T501: Enabled  Enabled
+LG:           Enabled  Enabled
+SANYO:        Disabled Enabled
+MITSUBISHI:   Disabled Enabled
+DISH:         Enabled  Disabled
+SHARP:        Enabled  Disabled
+DENON:        Enabled  Enabled
+PRONTO:       Enabled  (Not Applicable)
+
+Notes: 
+     - Most of the seetings above can be configured in the following files included as part of the library
+     - IRremteInt.h
+     - IRremote.h
+     - You can save SRAM by disabling the Decode or Send features for any protocol (Near the top of IRremoteInt.h)
+     - Some Timer conflicts, with other libraries, can be easily resolved by configuring a differnt Timer for your platform
