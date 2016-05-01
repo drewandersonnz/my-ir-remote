@@ -33,11 +33,23 @@ block content
     div.jumbotron
         h1 Web Remote
 
-        p Web Remote
+        div
+            a(class="btn btn-default", href="#", onClick="return sendRaw('nec 0x7e817e81');") zone1 on
+            a(class="btn btn-default", href="#", onClick="return sendRaw('nec 0x7e81fe01');") off
 
-        a(class="btn btn-default", href="#", onClick="return sendRaw('nec 0x5EA121DE');") setup
-        a(class="btn btn-default", href="#", onClick="return sendRaw('nec 0x5EA1D827');") vol down
-        a(class="btn btn-default", href="#", onClick="return sendRaw('nec 0x5EA158A7');") vol up
-        a(class="btn btn-default", href="#", onClick="return sendRaw('nec 0x5EA138C7');") vol mute
+        div
+            a(class="btn btn-default", href="#", onClick="return sendRaw('nec 0x5EA16897');") radio
+            a(class="btn btn-default", href="#", onClick="return sendRaw('nec 0x5EA1837C');") laptop
+            a(class="btn btn-default", href="#", onClick="return sendRaw('nec 0x5EA1A857');") bluetooth
 
-        textarea(id="testCommands")
+        div
+            a(class="btn btn-default", href="#", onClick="return sendRaw('nec 0x5EA131CE');") 7ch enhanced
+            a(class="btn btn-default", href="#", onClick="return sendRaw('nec 0x5EA16A95');") 7ch straight
+
+        div
+            a(class="btn btn-default", href="#", onClick="return sendRaw('nec 0x5EA121DE');") setup
+
+        div
+            a(class="btn btn-default", href="#", onClick="return sendRaw('nec 0x5EA1D827');") vol down
+            a(class="btn btn-default", href="#", onClick="return sendRaw('nec 0x5EA158A7');") vol up
+            a(class="btn btn-default", href="#", onClick="return sendRaw('nec 0x5EA138C7');") vol mute
