@@ -1,0 +1,141 @@
+KEY_POWER                0x5EA1F807
+KEY_SLEEP                0x5EA1EA15
+KEY_6chIN                0x5EA1E11E
+KEY_CD                   0x5EA1A857
+KEY_DTV/CBL              0x5EA12AD5
+KEY_DVD                  0x5EA1837C
+KEY_MD/CD-R              0x5EA1936C
+KEY_TUNER                0x5EA16897
+KEY_V-AUX                0x5EA1AA55
+KEY_VCR                  0x5EA1F00F
+
+TUNER_ABCDE              0x5EA148B7
+TUNER_PRESET_DOWN        0x5EA18877
+TUNER_PRESET_UP          0x5EA108F7
+
+Dobly/DTS                0x5EA109F6
+KEY_1                    0x5EA1E916
+Night                    0x5EA1A956
+Test                     0x5EA1A15E
+Stereo                   0x5EA16A95
+KEY_VOLUMEUP             0x5EA158A7
+KEY_VOLUMEDOWN           0x5EA1D827
+KEY_MUTE                 0x5EA138C7
+
+KEY_CHANNELUP            0x5EA11AE5
+KEY_CHANNELDOWN          0x5EA19A65
+
+Level                    0x5EA1619E
+
+SetMenu                  0x5EA139C6
+
+MenuUp                   0x5EA119E6
+MenuDown                 0x5EA19966
+Menu+                    0x5EA14AB5
+Menu-                    0x5EA1CA35
+
+
+
+// KEY_SLEEP                0x000000005EA18778 // B
+// KEY_POWER                0x000000005EA147B8 // tuner preset group C
+// KEY_MUTE                 0x000000005EA1C738 // tuner preset group D
+// KEY_VOLUMEDOWN           0x000000005EA127D8 // tuner preset group E
+// volume^                  0x000000005EA1A758 // tuner preset group sub change
+
+#define YAMAHA_SOURCE_PHONO             0x5EA128D7
+#define YAMAHA_SOURCE_CD                0x5EA1A857
+#define YAMAHA_SOURCE_TUNER             0x5EA16897
+#define YAMAHA_SOURCE_VCR_1             0x5EA1F00F
+#define YAMAHA_SOURCE_DVR               0x5EA1C837
+#define YAMAHA_SOURCE_DVD               0x5EA1837C
+
+#define YAMAHA_EFFECT_HALLS             0x5EA111EE
+#define YAMAHA_EFFECT_CLUBS             0x5EA1916E
+#define YAMAHA_EFFECT_SPORTS            0x5EA151AE
+#define YAMAHA_EFFECT_MONO_MOVIE        0x5EA1D12E
+#define YAMAHA_EFFECT_PROLOGIC          0x5EA1B14E // neo6/PL II/Pro Logic
+#define YAMAHA_DSP_EFFECT_ONOFF         0x5EA16A95 // straight / 7chan
+#define YAMAHA_2CH_7CH                  0x5EA131CE // 2ch/7ch stereo
+#define YAMAHA_PURE_DIRECT              0x5EA1BB44 // pure direct
+
+#define YAMAHA_MUTING                   0x5EA138C7
+#define YAMAHA_KEY_VOLUMEUP             0x5EA158A7
+#define YAMAHA_KEY_VOLUMEDOWN           0x5EA1D827
+
+#define YAMAHA_TUNER_ABCDE              0x5EA148B7
+#define YAMAHA_TUNER_PRESET_1           0x5EA1A758
+#define YAMAHA_TUNER_PRESET_6           0x5EA157A8
+#define YAMAHA_TUNER_PRESET_DOWN        0x5EA18877
+#define YAMAHA_TUNER_PRESET_UP          0x5EA108F7
+
+#define YAMAHA_MENU_UP                  0x5EA1B946
+#define YAMAHA_MENU_DOWN                0x5EA139C6
+#define YAMAHA_MENU_LEFT                0x5EA1F906
+#define YAMAHA_MENU_RIGHT               0x5EA17986
+#define YAMAHA_MENU_ENTER               0x5EA17B84
+#define YAMAHA_MENU_RETURN              0x5EA155AA
+#define YAMAHA_MENU_ON_SCREEN           0x5EA121DE
+#define YAMAHA_MENU_OPTION              0x5EA1D628
+
+#define YAMAHA_OFF                      0x7e81fe01
+#define YAMAHA_SLEEP                    0x5EA1EA15
+#define YAMAHA_ZONE1_ON                 0x7e817e81
+#define YAMAHA_ZONE2_ON                 0x5EA1FB04
+
+#define YAMAHA_PRM_7CH                  0x5EA123DC
+
+// TapeMon                0x5EA131CE // 7ch stereo
+// 14                     0x5EA1BB44 // pure direct
+// 16                     0x5EA1FB04 // zone2 on
+// Effect                 0x5EA1837C // source DVD
+// Down                   0x5EA123DC // program 7ch
+// VolUp                  0x5EA1B14E // program surround decoder
+
+
+
+    else if (command == "off")
+        return sendCommand_Yamaha(command, YAMAHA_OFF, 32);
+    else if (command == "zone1 on")
+        return sendCommand_Yamaha(command, YAMAHA_ZONE1_ON, 32);
+    else if (command == "zone2 on")
+        return sendCommand_Yamaha(command, YAMAHA_ZONE2_ON, 32);
+    else if (command == "vd")
+        return sendCommand_Yamaha(command, YAMAHA_KEY_VOLUMEDOWN, 32);
+    else if (command == "vu")
+        return sendCommand_Yamaha(command, YAMAHA_KEY_VOLUMEUP, 32);
+    else if (command == "vm")
+        return sendCommand_Yamaha(command, YAMAHA_MUTING, 32);
+    else if (command == "setup")
+        return sendCommand_Yamaha(command, YAMAHA_MENU_ON_SCREEN, 32);
+    else if (command == "up")
+        return sendCommand_Yamaha(command, YAMAHA_MENU_UP, 32);
+    else if (command == "down")
+        return sendCommand_Yamaha(command, YAMAHA_MENU_DOWN, 32);
+    else if (command == "left")
+        return sendCommand_Yamaha(command, YAMAHA_MENU_LEFT, 32);
+    else if (command == "right")
+        return sendCommand_Yamaha(command, YAMAHA_MENU_RIGHT, 32);
+    else if (command == "enter")
+        return sendCommand_Yamaha(command, YAMAHA_MENU_ENTER, 32);
+    else if (command == "return")
+        return sendCommand_Yamaha(command, YAMAHA_MENU_RETURN, 32);
+    else if (command == "reset") {
+        sendCommand_Yamaha(command, YAMAHA_2CH_7CH, 32);
+        return;
+    }
+    else if (command == "source cd")
+        return sendCommand_Yamaha(command, YAMAHA_SOURCE_CD, 32);
+    else if (command == "source dvd")
+        return sendCommand_Yamaha(command, YAMAHA_SOURCE_DVD, 32);
+    else if (command == "source tuner")
+        return sendCommand_Yamaha(command, YAMAHA_SOURCE_TUNER, 32);
+    else if (command == "tuner up")
+        return sendCommand_Yamaha(command, YAMAHA_TUNER_PRESET_UP, 32);
+    else if (command == "tuner down")
+        return sendCommand_Yamaha(command, YAMAHA_TUNER_PRESET_DOWN, 32);
+    else {
+        command = "0x000000005EA1" + command;
+        long decimal_answer = strtol(command.c_str(), NULL, 16);
+        Serial.println(decimal_answer);
+        return sendCommand_Yamaha(command, decimal_answer, 32);
+    }
