@@ -52,13 +52,11 @@ void loop() {
     }
     lastString = readString;
 
-    if (readString.substring(0,2) == "y ") {
+    if (readString.substring(0,2) == "yama ") {
         return handleYamaha(readString.substring(2));
-    } else if (readString.substring(0,2) == "s ") {
+    } else if (readString.substring(0,2) == "sams ") {
         return handleSamsung(readString.substring(2));
     }
-
-    return handleYamaha(readString);
 
     Serial.println((String) "Unknown command: " + readString);
 }
