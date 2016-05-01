@@ -75,6 +75,14 @@ var commands = {
     'all.OUTPUT_HDMI_OUT'                : '0x5EA1AC53',
     'all.MENU_LEVEL'                     : '0x5EA1619E',
 
+
+    'zone1.SOURCE_PHONO'                   : '0x5EA128D7',
+    'zone1.SOURCE_CD'                      : '0x5EA1A857',
+    'zone1.SOURCE_TUNER'                   : '0x5EA16897',
+    'zone1.SOURCE_VCR_1'                   : '0x5EA1F00F',
+    'zone1.SOURCE_DVR'                     : '0x5EA1C837',
+    'zone1.SOURCE_DVD'                     : '0x5EA1837C',
+
     'zone1.MEMORY_VOLUME_MEMORY1'          : '0x7E81D629',
     'zone1.MEMORY_VOLUME_MEMORY2'          : '0x7E8136C9',
     'zone1.MEMORY_VOLUME_MEMORY3'          : '0x7E81B649',
