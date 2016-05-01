@@ -25,6 +25,10 @@ app.get('/', function(request, response) {
     response.render('index');
 });
 
+app.get('/custom', function(request, response) {
+    response.render('custom');
+});
+
 // Homepage
 app.get('/send', function(request, response) {
     if (! request.query.remote) {
