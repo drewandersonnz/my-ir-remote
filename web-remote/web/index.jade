@@ -1,0 +1,43 @@
+extends ../templates/default.jade
+
+
+
+block title
+    title='Web Remote'
+
+block content
+
+    script.
+        function sendCommand(command) {
+            console.log("sendCommand");
+            $.get("/send?remote=yamaha-rx-v863&type=command&command=" + command);
+            return false;
+        };
+
+        function sendKeypress(keyId) {
+            console.log("sendKeypress " + keyId);
+            $.get("/send?remote=yamaha-rx-v863&type=keypress&key=" + keyId);
+            return false;
+        };
+
+        function sendRaw(raw) {
+            console.log("sendRaw");
+            $.get("/send?remote=yamaha-rx-v863&type=raw&raw=" + raw);
+            return false;
+        };
+
+        $(document).keydown(function(e){
+            return sendKeypress(e.which);
+        });
+
+    div.jumbotron
+        h1 Web Remote
+
+        p Web Remote
+
+        a(class="btn btn-default", href="#", onClick="return sendRaw('nec 0x5EA121DE');") setup
+        a(class="btn btn-default", href="#", onClick="return sendRaw('nec 0x5EA1D827');") vol down
+        a(class="btn btn-default", href="#", onClick="return sendRaw('nec 0x5EA158A7');") vol up
+        a(class="btn btn-default", href="#", onClick="return sendRaw('nec 0x5EA138C7');") vol mute
+
+        textarea(id="testCommands")

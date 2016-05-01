@@ -1,0 +1,37 @@
+doctype html
+html
+    head
+        block title
+            title='Web Remote'
+
+        script(src='https://code.jquery.com/jquery-1.12.0.min.js', crossorigin='anonymous')
+        link(href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css', rel='stylesheet', crossorigin='anonymous', integrity='sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7')
+        link(href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css', rel='stylesheet', crossorigin='anonymous', integrity='sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r')
+        link(href='https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css', rel='stylesheet', crossorigin='anonymous')
+        script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js', crossorigin='anonymous', integrity='sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS')
+
+        link(href='/jumbotron-narrow.css', rel='stylesheet', crossorigin='anonymous')
+
+    body
+        div.container
+            div(class="header clearfix")
+                nav
+                    ul(class="nav nav-pills pull-right")
+                        li(role="presentation")
+                            a(href="/") home
+                h3(class="text-muted") Web Remote
+
+            block content
+                div.jumbotron
+                    h1 Web Remote
+
+                    p Use me
+
+            footer(class="footer")
+                ul(class="nav nav-pills pull-right")
+                    li(role="presentation")
+                        a(href="https://twitter.com/drewandersonnz")
+                            i(class="fa fa-twitter fa-lg")
+                            | @drewandersonnz
+
+                p(class="text-muted") &copy; 2016
