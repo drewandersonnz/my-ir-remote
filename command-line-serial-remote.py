@@ -2,7 +2,7 @@
 
 commands = []
 
-with open('test.txt') as f:
+with open('Yamaha_other.txt') as f:
     lines = f.read().splitlines()
 
 for line in lines:
