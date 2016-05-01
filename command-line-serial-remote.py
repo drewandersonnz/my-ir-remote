@@ -1,17 +1,19 @@
 #!/usr/bin/env python
+import curses
+import serial
 
 commands = []
 
-with open('Yamaha_other.txt') as f:
-    lines = f.read().splitlines()
-
-for line in lines:
-    line = line.strip().split()
-    try:
-        if (line[1][0] == "0"):
-            commands.append(line)
-    except:
-        pass
+#with open('Yamaha_other.txt') as f:
+#    lines = f.read().splitlines()
+#
+#for line in lines:
+#    line = line.strip().split()
+#    try:
+#        if (line[1][0] == "0"):
+#            commands.append(line)
+#    except:
+#        pass
 
 ##print line
 ##print commands
@@ -19,13 +21,38 @@ for line in lines:
 
 commandIndex = 0;
 
+yamaha = {
+    'pre': 'nec ',
+    'keys': {
+        curses.KEY_UP:     '0x5EA1B946', # YAMAHA_MENU_UP
+        curses.KEY_DOWN:   '0x5EA139C6', # YAMAHA_MENU_DOWN
+        curses.KEY_LEFT:   '0x5EA1F906', # YAMAHA_MENU_LEFT
+        curses.KEY_RIGHT:  '0x5EA17986', # YAMAHA_MENU_RIGHT
+        10:  '0x5EA17B84', # YAMAHA_MENU_ENTER
+        ord('\\'):'0x5EA155AA', # YAMAHA_MENU_RETURN
+        ord('s'): '0x5EA121DE', # YAMAHA_MENU_ON_SCREEN
+        ord('a'): '0x5EA1D628', # YAMAHA_MENU_OPTION
+
+        ord('/'): '0x5EA138C7', # mute
+        ord('.'): '0x5EA158A7', # volume up
+        ord(','): '0x5EA1D827', # volume down
+        ord('p'): '0x7e817e81', # power on
+        ord('o'): '0x7e81fe01', # power off
+
+        ord('k'): '0x5EA16A95', # YAMAHA_DSP_EFFECT_ONOFF // straight / 7chan
+        ord('l'): '0x5EA131CE', # YAMAHA_2CH_7CH // 2ch/7ch stereo
+        #ord(''): '', #
+    },
+}
+
+controller = yamaha
+
 def sendCommand(stdscr, command, message=""):
     ser = serial.Serial('/dev/ttyS2', 9600, timeout=0, write_timeout=0)
     ser.write(command)
     stdscr.addstr(2, 0, command + " :message: " + message + "                                   ")
     ser.close()
 
-import curses
 stdscr = curses.initscr()
 curses.cbreak()
 stdscr.keypad(1)
@@ -33,54 +60,16 @@ stdscr.keypad(1)
 stdscr.addstr(0,0,"Hit 'q' to quit")
 stdscr.refresh()
 
-import serial
-
 key = ''
 while key != ord('q'):
     key = stdscr.getch()
-    if key == curses.KEY_UP:
-        sendCommand(stdscr, "y up")
-    elif key == curses.KEY_DOWN:
-        sendCommand(stdscr, "y down")
-    elif key == curses.KEY_LEFT:
-        sendCommand(stdscr, "y left")
-    elif key == curses.KEY_RIGHT:
-        sendCommand(stdscr, "y right")
-    elif key == 10: # curses.KEY_ENTER:
-        sendCommand(stdscr, "y enter")
-    elif key == ord('\\'):
-        sendCommand(stdscr, "y return")
-    elif key == ord('s'):
-        sendCommand(stdscr, "y setup")
-    elif key == ord('0'):
-        sendCommand(stdscr, "y reset")
-    elif key == ord('p'):
-        sendCommand(stdscr, "y zone1 on")
-    elif key == ord('o'):
-        sendCommand(stdscr, "y off")
-    elif key == ord('7'):
-        sendCommand(stdscr, "y source tuner")
-    elif key == ord('8'):
-        sendCommand(stdscr, "y source dvd")
-    elif key == ord('9'):
-        sendCommand(stdscr, "y source cd")
-    elif key == ord('r'):
-        sendCommand(stdscr, "r")
-    elif key == ord(','):
-        sendCommand(stdscr, "y vd")
-    elif key == ord('.'):
-        sendCommand(stdscr, "y vu")
-    elif key == ord('/'):
-        sendCommand(stdscr, "y vm")
-    elif key == ord('z'):
-        sendCommand(stdscr, "y tuner down")
-    elif key == ord('x'):
-        sendCommand(stdscr, "y tuner up")
-    elif key == ord('b'):
-        sendCommand(stdscr, "y 0x5EA1D628")
-    elif key == ord('n'):
-        sendCommand(stdscr, "y " + commands[commandIndex][1], commands[commandIndex][0])
-        commandIndex = commandIndex + 1
+    if key == ord(' '):
+        sendCommand(stdscr, '... ')
+    else:
+        try:
+            sendCommand(stdscr, controller['pre'] + controller['keys'][key])
+        except:
+            pass
 
     stdscr.refresh()
 
