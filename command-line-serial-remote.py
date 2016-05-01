@@ -2,6 +2,8 @@
 import curses
 import serial
 
+serialDevice = '/dev/ttyACM0'
+#serialDevice = '/dev/ttyS2'
 commands = []
 
 #with open('Yamaha_other.txt') as f:
@@ -48,7 +50,7 @@ yamaha = {
 controller = yamaha
 
 def sendCommand(stdscr, command, message=""):
-    ser = serial.Serial('/dev/ttyS2', 9600, timeout=0, write_timeout=0)
+    ser = serial.Serial(serialDevice, 9600, timeout=0, write_timeout=0)
     ser.write(command)
     stdscr.addstr(2, 0, command + " :message: " + message + "                                   ")
     ser.close()
